@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lsj.selfblog.selfblog.dao.role.BlogRoleMapper">
+    <resultMap type="com.lsj.selfblog.selfblog.bean.role.BlogRole" id="BlogRole">
+       <result column="role_id" jdbcType="VARCHAR" property="roleId"/>
+       <result column="role_name" jdbcType="VARCHAR" property="role" typeHandler="com.lsj.selfblog.selfblog.bean.role.RoleEnumHandler"/>
+    </resultMap>
+
+    <!-- queryRoleById --> 
+    <select id="queryRoleById" resultMap="BlogRole">
+        SELECT role_id,role_name 
+            FROM selfblog.selfblog_role 
+            WHERE role_id = #{roleId};
+    </select>
+</mapper>

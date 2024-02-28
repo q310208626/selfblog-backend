@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lsj.selfblog.selfblog.dao.BlogUserMapper">
+    <resultMap id="BlogUserMapper" type="com.lsj.selfblog.selfblog.bean.BlogUser">
+      <result column="user_id" property="userId"/>
+      <result column="username" property="username"/>
+      <result column="password" property="password"/>
+      <collection property="roles" resultMap="com.lsj.selfblog.selfblog.dao.role.BlogRoleMapper.BlogRole"/>
+    </resultMap>
+    <insert id="addBlogUser">
+        INSERT INTO selfblog.selfblog_user(username,password)
+          VALUES(#{username},#{password});
+    </insert>
+    <select id="queryBlogUserByName" resultMap="BlogUserMapper">
+        SELECT u.user_id,u.username,u.password,r.role_id,r.role_name
+          FROM selfblog.selfblog_user u, selfblog.selfblog_role r, selfblog.user_role ru
+          WHERE username = #{username}
+          AND u.user_id = ru.user_id
+          AND r.role_id = ru.role_id
+    </select>
+    <select id="queryBlogUserById" resultType="com.lsj.selfblog.selfblog.bean.BlogUser">
+        SELECT user_id,username,password
+          FROM selfblog.selfblog_user
+          WHERE user_id = #{userId};
+    </select>
+  </mapper>
