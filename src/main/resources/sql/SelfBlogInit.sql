@@ -20,6 +20,7 @@ CREATE TABLE SELFBLOG_ROLE(
 ALTER TABLE SELFBLOG_ROLE AUTO_INCREMENT=1000001;
 
 INSERT SELFBLOG_ROLE(role_name) VALUE ('ADMIN');
+INSERT SELFBLOG_ROLE(role_name) VALUE ('NORMAL');
 
 
 DROP TABLE IF EXISTS USER_ROLE;
@@ -31,5 +32,6 @@ CREATE TABLE USER_ROLE (
 ) ENGINE = InnoDB DEFAULT CHARSET =UTF8MB4;
 INSERT USER_ROLE(user_id,role_id) 
   SELECT user_id,role_id from selfblog_user,selfblog_role WHERE username = 'admin' and role_name = 'ADMIN';
-
+INSERT USER_ROLE(user_id,role_id) 
+  SELECT user_id,role_id from selfblog_user,selfblog_role WHERE username = 'admin' and role_name = 'NORMAL';
   

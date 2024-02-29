@@ -5,6 +5,8 @@ import com.lsj.selfblog.selfblog.bean.role.BlogRole;
 import com.lsj.selfblog.selfblog.dao.BlogUserMapper;
 import com.lsj.selfblog.selfblog.dao.role.BlogRoleMapper;
 import com.lsj.selfblog.selfblog.service.SelfBlogUserService;
+import com.lsj.selfblog.selfblog.utils.JwtUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +28,16 @@ public class SelfBlogUserServiceImpl implements SelfBlogUserService{
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String createUserToken(String username) {
+        String userToken = null;
+        BlogUser blogUser = blogUserMapper.queryBlogUserByName(username);
+        if(blogUser == null) {
+            return userToken;
+        }
+        userToken = JwtUtils.createToken(blogUser);
+        return userToken;
     }
 }

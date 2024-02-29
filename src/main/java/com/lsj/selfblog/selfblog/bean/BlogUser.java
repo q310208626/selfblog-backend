@@ -2,11 +2,13 @@ package com.lsj.selfblog.selfblog.bean;
 
 import java.util.List;
 
+import com.lsj.selfblog.selfblog.bean.role.BlogRole;
+
 public class BlogUser {
     private int userId;
     private String username;
     private String password;
-    private List<String> roles;
+    private List<BlogRole> roles;
 
     public int getUserId() {
         return userId;
@@ -32,11 +34,11 @@ public class BlogUser {
         this.password = password;
     }
 
-    public List<String> getRoles() {
+    public List<BlogRole> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<String> roles) {
+    public void setRoles(List<BlogRole> roles) {
         this.roles = roles;
     }
 }

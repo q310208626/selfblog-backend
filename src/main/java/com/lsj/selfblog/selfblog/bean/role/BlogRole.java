@@ -4,7 +4,7 @@ public class BlogRole {
     private int roleId;
     private ROLE role;
 
-    enum ROLE {
+    public enum ROLE {
         ADMIN("AdminUser", "ADMIN"),
         NORMAL_USER("NormalUser", "NORMAL");
 

@@ -5,7 +5,14 @@
       <result column="user_id" property="userId"/>
       <result column="username" property="username"/>
       <result column="password" property="password"/>
-      <collection property="roles" resultMap="com.lsj.selfblog.selfblog.dao.role.BlogRoleMapper.BlogRole"/>
+      
+      <!-- when need the whole Role Object, use the following code -->
+      <collection property="roles" resultMap="com.lsj.selfblog.selfblog.dao.role.BlogRoleMapper.BlogRole"></collection>
+
+      <!-- when only need Role.value, use the following code -->
+      <!-- <collection property="roles" ofType="String">
+        <result column="role_name" jdbcType="VARCHAR" typeHandler="com.lsj.selfblog.selfblog.bean.role.RoleEnumHandler"/>
+      </collection> -->
     </resultMap>
     <insert id="addBlogUser">
         INSERT INTO selfblog.selfblog_user(username,password)
